@@ -1,0 +1,83 @@
+plugins {
+    id 'java-library'
+    id 'io.qameta.allure' version '2.11.2'
+    id "io.freefair.lombok" version '8.1.0'
+}
+group 'ru.hh'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+def seleniumJavaVersion = '4.11.0',
+    webDriverManagerVersion = '5.4.1',
+    selenideVersion = '6.17.0',
+    jUnitJupiterVersion = '5.10.0',
+    allureSelenideVersion = '2.23.0',
+    ownerVersion = '1.0.4',
+    assertJCoreVersion = '3.24.2',
+    jacksonDatabindVersion = '2.15.2',
+    restAssuredVersion = '5.3.1',
+    allureRestAssuredVersion = '2.23.0',
+    jsonSchemaValidatorVersion = '5.3.1',
+    slf4jSimpleVersion = '2.0.7',
+    slf4jAPIVersion = '2.0.7',
+    javaFakerVersion = '1.0.2',
+    pdfTestVersion = '1.8.1',
+    xlsTestVersion = '1.7.0',
+    openCSVVersion = '5.8'
+
+dependencies {
+    testImplementation(
+            "org.seleniumhq.selenium:selenium-java:$seleniumJavaVersion",
+            "io.github.bonigarcia:webdrivermanager:$webDriverManagerVersion",
+            "com.codeborne:selenide:$selenideVersion",
+            "org.junit.jupiter:junit-jupiter:$jUnitJupiterVersion",
+            "io.qameta.allure:allure-selenide:$allureSelenideVersion",
+            "org.aeonbits.owner:owner:$ownerVersion",
+            "org.assertj:assertj-core:$assertJCoreVersion",
+            "com.fasterxml.jackson.core:jackson-databind:$jacksonDatabindVersion",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "io.qameta.allure:allure-rest-assured:$allureRestAssuredVersion",
+            "io.rest-assured:json-schema-validator:$jsonSchemaValidatorVersion",
+            "org.slf4j:slf4j-simple:$slf4jSimpleVersion",
+            "org.slf4j:slf4j-api:$slf4jAPIVersion",
+            "com.github.javafaker:javafaker:$javaFakerVersion",
+            "com.codeborne:pdf-test:$pdfTestVersion",
+            "com.codeborne:xls-test:$xlsTestVersion",
+            "com.opencsv:opencsv:$openCSVVersion"
+    )
+}
+
+allure {
+    report {
+        version.set(allureSelenideVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureSelenideVersion)
+            }
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+task login_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("login")
+    }
+}
