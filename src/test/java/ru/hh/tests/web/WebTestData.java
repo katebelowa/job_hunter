@@ -5,5 +5,7 @@ public class WebTestData {
         userGmail = "2023jobhunter@gmail.com",
         userGooglePassword = "_QAStudent(2023)_",
         hhPassword = "U,U,D,D,L,R,L,R,A,B,Select,Start",
-        hhUserName = "Иван Иванов";
+        hhUserName = "Иван Иванов",
+        searchQuery = "тестировщик",
+        city = "Санкт-Петербург";
 }

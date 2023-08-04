@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import ru.hh.config.WebConfig;
 import ru.hh.helpers.Attach;
+import ru.hh.pages.JobSearchPage;
 import ru.hh.pages.LoginPage;
 
 import java.util.Map;
@@ -20,6 +21,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class WebTestBase {
     static WebConfig config = ConfigFactory.create(WebConfig.class, System.getProperties());
     LoginPage loginPage = new LoginPage();
+    JobSearchPage jobSearchPage = new JobSearchPage();
 
     @BeforeAll
     static void beforeAll() {

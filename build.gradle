@@ -81,3 +81,9 @@ task login_test(type: Test) {
         includeTags("login")
     }
 }
+
+task job_search_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("job_search")
+    }
+}
